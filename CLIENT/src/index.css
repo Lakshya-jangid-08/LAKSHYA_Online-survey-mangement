@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Lakshya Theme - Custom Components */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-xl shadow-lg text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center px-4 py-2 border border-primary-300 text-sm font-medium rounded-xl shadow-sm text-primary-700 bg-white hover:bg-gradient-subtle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300;
+  }
+  
+  .card {
+    @apply bg-gradient-card border border-primary-200 shadow-lg rounded-xl p-6;
+  }
+  
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-primary-800 to-accent-800 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-transparent;
+  }
+  
+  .input-field {
+    @apply w-full rounded-xl border-primary-300 bg-white/80 backdrop-blur-sm shadow-sm focus:border-primary-500 focus:ring-primary-500 transition-all duration-200;
+  }
+}
+
+/* Lakshya Theme Global Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Lakshya Button Styles */
+  .btn-primary {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center px-4 py-2 border border-primary-300 text-sm font-medium rounded-lg text-primary-700 bg-white hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200;
+  }
+  
+  /* Lakshya Card Styles */
+  .card {
+    @apply bg-gradient-card border border-primary-200 shadow-lg rounded-xl p-6 hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  /* Lakshya Input Styles */
+  .input-primary {
+    @apply block w-full px-3 py-2 border border-primary-300 rounded-lg shadow-sm placeholder-primary-400 text-primary-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 bg-white/80 backdrop-blur-sm transition-all duration-200;
+  }
+  
+  /* Lakshya Badge Styles */
+  .badge-primary {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-800;
+  }
+  
+  .badge-success {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-secondary-100 to-secondary-200 text-secondary-800;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar for Lakshya theme */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(20 184 166) rgb(240 253 250);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgb(240 253 250);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgb(20 184 166);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgb(13 148 136);
+  }
+  
+  /* Text gradient utilities */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-primary-800 to-accent-800 bg-clip-text text-transparent;
+  }
+}

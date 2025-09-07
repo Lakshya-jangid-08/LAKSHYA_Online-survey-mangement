@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jigyasa API Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      color: #333;
+    }
+    header {
+      background-color: #f4f4f8;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin-top: 0;
+      color: #3050b3;
+    }
+    h2 {
+      color: #3050b3;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #444;
+      margin-top: 25px;
+    }
+    .endpoint {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-left: 4px solid #3050b3;
+      margin-bottom: 20px;
+      border-radius: 0 5px 5px 0;
+    }
+    .method {
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 3px;
+      color: white;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .get { background-color: #61affe; }
+    .post { background-color: #49cc90; }
+    .put { background-color: #fca130; }
+    .delete { background-color: #f93e3e; }
+    
+    .url {
+      font-family: monospace;
+      font-size: 1.1em;
+    }
+    .description {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .auth {
+      background-color: #ffdf7e;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 0.8em;
+      margin-left: 10px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 15px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .nav {
+      position: sticky;
+      top: 20px;
+      float: right;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      width: 200px;
+      margin-left: 20px;
+    }
+    .nav ul {
+      list-style-type: none;
+      padding-left: 15px;
+    }
+    .nav li {
+      margin-bottom: 5px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #3050b3;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jigyasa Online Survey Management System API Documentation</h1>
+    <p>This document provides details on all available API endpoints for the Jigyasa system.</p>
+  </header>
+
+  <div class="nav">
+    <h3>Quick Navigation</h3>
+    <ul>
+      <li><a href="#auth">Authentication</a></li>
+      <li><a href="#organizations">Organizations</a></li>
+      <li><a href="#surveys">Surveys</a></li>
+      <li><a href="#responses">Survey Responses</a></li>
+      <li><a href="#analysis">Data Analysis</a></li>
+    </ul>
+  </div>
+
+  <h2 id="auth">Authentication API</h2>
+  <p>API endpoints for user authentication and profile management.</p>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/auth/register</span>
+    <div class="description">Register a new user account.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "yourpassword",
+  "organization": "Organization ID (optional)"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "user_id",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "token": "JWT_ACCESS_TOKEN",
+  "refreshToken": "JWT_REFRESH_TOKEN"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/auth/login</span>
+    <div class="description">Authenticate a user and get JWT tokens.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "email": "john@example.com",
+  "password": "yourpassword"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "user_id",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "token": "JWT_ACCESS_TOKEN",
+  "refreshToken": "JWT_REFRESH_TOKEN"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/auth/refresh</span>
+    <div class="description">Get a new access token using a refresh token.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "refreshToken": "JWT_REFRESH_TOKEN"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "token": "NEW_JWT_ACCESS_TOKEN"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/auth/profile</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get the current user's profile information.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "user_id",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "organization": {
+    "id": "org_id",
+    "name": "Organization Name"
+  }
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="url">/api/auth/profile</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Update the current user's profile information.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "name": "Updated Name",
+  "email": "newemail@example.com",
+  "password": "newpassword" // Optional
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "user_id",
+  "name": "Updated Name",
+  "email": "newemail@example.com"
+}</pre>
+    </details>
+  </div>
+
+  <h2 id="organizations">Organizations API</h2>
+  <p>API endpoints for managing organizations.</p>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/organizations</span>
+    <div class="description">Get a list of all organizations.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>[
+  {
+    "id": "org_id_1",
+    "name": "Organization 1",
+    "description": "Description of organization 1"
+  },
+  {
+    "id": "org_id_2",
+    "name": "Organization 2",
+    "description": "Description of organization 2"
+  }
+]</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/organizations/:id</span>
+    <div class="description">Get detailed information for a specific organization.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "org_id",
+  "name": "Organization Name",
+  "description": "Organization description",
+  "memberCount": 25,
+  "createdAt": "2025-01-15T10:30:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/organizations</span>
+    <div class="description">Create a new organization.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "name": "New Organization",
+  "description": "Description of the new organization"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "new_org_id",
+  "name": "New Organization",
+  "description": "Description of the new organization",
+  "createdAt": "2025-08-23T14:30:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="url">/api/organizations/:id</span>
+    <span class="auth">Requires Authentication (Admin)</span>
+    <div class="description">Update an existing organization.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "name": "Updated Organization Name",
+  "description": "Updated description"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "org_id",
+  "name": "Updated Organization Name",
+  "description": "Updated description",
+  "updatedAt": "2025-08-23T14:35:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method delete">DELETE</span>
+    <span class="url">/api/organizations/:id</span>
+    <span class="auth">Requires Authentication (Admin)</span>
+    <div class="description">Delete an organization.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "message": "Organization deleted successfully"
+}</pre>
+    </details>
+  </div>
+
+  <h2 id="surveys">Surveys API</h2>
+  <p>API endpoints for managing surveys.</p>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/surveys</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Create a new survey.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "title": "Customer Satisfaction Survey",
+  "description": "Survey to gather feedback from customers",
+  "organization": "org_id", // Optional
+  "questions": [
+    {
+      "text": "How satisfied are you with our service?",
+      "type": "rating",
+      "options": {
+        "min": 1,
+        "max": 5,
+        "labels": ["Very Dissatisfied", "Very Satisfied"]
+      },
+      "required": true
+    },
+    {
+      "text": "What improvements would you suggest?",
+      "type": "text",
+      "required": false
+    }
+  ]
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "survey_id",
+  "title": "Customer Satisfaction Survey",
+  "description": "Survey to gather feedback from customers",
+  "creator": "user_id",
+  "organization": "org_id",
+  "questions": [...],
+  "createdAt": "2025-08-23T15:00:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/surveys</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get all surveys created by the authenticated user.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>[
+  {
+    "id": "survey_id_1",
+    "title": "Customer Satisfaction Survey",
+    "description": "Survey to gather feedback from customers",
+    "responseCount": 15,
+    "createdAt": "2025-08-20T15:00:00Z"
+  },
+  {
+    "id": "survey_id_2",
+    "title": "Employee Feedback",
+    "description": "Annual employee feedback survey",
+    "responseCount": 8,
+    "createdAt": "2025-08-22T10:00:00Z"
+  }
+]</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/surveys/organization-surveys</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get all surveys from the user's organization.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>[
+  {
+    "id": "survey_id_1",
+    "title": "Department Feedback",
+    "description": "Gather feedback about department operations",
+    "creator": "user_id_1",
+    "creatorName": "John Doe",
+    "createdAt": "2025-08-15T09:00:00Z"
+  },
+  {
+    "id": "survey_id_2",
+    "title": "Office Space Survey",
+    "description": "Feedback on the new office layout",
+    "creator": "user_id_2",
+    "creatorName": "Jane Smith",
+    "createdAt": "2025-08-18T14:30:00Z"
+  }
+]</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/surveys/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get detailed information for a specific survey.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "survey_id",
+  "title": "Customer Satisfaction Survey",
+  "description": "Survey to gather feedback from customers",
+  "creator": "user_id",
+  "organization": {
+    "id": "org_id",
+    "name": "Organization Name"
+  },
+  "questions": [
+    {
+      "id": "question_id_1",
+      "text": "How satisfied are you with our service?",
+      "type": "rating",
+      "options": {
+        "min": 1,
+        "max": 5,
+        "labels": ["Very Dissatisfied", "Very Satisfied"]
+      },
+      "required": true
+    },
+    {
+      "id": "question_id_2",
+      "text": "What improvements would you suggest?",
+      "type": "text",
+      "required": false
+    }
+  ],
+  "responseCount": 15,
+  "createdAt": "2025-08-20T15:00:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="url">/api/surveys/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Update an existing survey.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "title": "Updated Survey Title",
+  "description": "Updated survey description",
+  "questions": [...]
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "survey_id",
+  "title": "Updated Survey Title",
+  "description": "Updated survey description",
+  "questions": [...],
+  "updatedAt": "2025-08-23T16:00:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method delete">DELETE</span>
+    <span class="url">/api/surveys/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Delete a survey.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "message": "Survey deleted successfully"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/surveys/:creatorId/:surveyId/public</span>
+    <div class="description">Get a public view of a survey for responding (optionally authenticated).</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "survey_id",
+  "title": "Customer Satisfaction Survey",
+  "description": "Survey to gather feedback from customers",
+  "questions": [...]
+}</pre>
+    </details>
+  </div>
+
+  <h2 id="responses">Survey Responses API</h2>
+  <p>API endpoints for submitting and retrieving survey responses.</p>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/survey-responses</span>
+    <div class="description">Submit a response to a survey (authentication optional).</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "surveyId": "survey_id",
+  "respondentName": "Anonymous", // Optional if authenticated
+  "responses": [
+    {
+      "questionId": "question_id_1",
+      "answer": 4
+    },
+    {
+      "questionId": "question_id_2",
+      "answer": "Service is good but could be faster."
+    }
+  ]
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "response_id",
+  "surveyId": "survey_id",
+  "respondent": "user_id or anonymous",
+  "submittedAt": "2025-08-23T16:30:00Z",
+  "message": "Thank you for your feedback!"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/survey-responses</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get all responses for surveys created by the authenticated user.</div>
+    <details>
+      <summary>Query Parameters</summary>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>surveyId</td>
+          <td>String</td>
+          <td>Filter responses by survey ID</td>
+        </tr>
+      </table>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>[
+  {
+    "id": "response_id_1",
+    "surveyId": "survey_id",
+    "surveyTitle": "Customer Satisfaction Survey",
+    "respondent": "Anonymous",
+    "submittedAt": "2025-08-23T12:30:00Z"
+  },
+  {
+    "id": "response_id_2",
+    "surveyId": "survey_id",
+    "surveyTitle": "Customer Satisfaction Survey",
+    "respondent": "user_id",
+    "respondentName": "John Smith",
+    "submittedAt": "2025-08-23T14:15:00Z"
+  }
+]</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/survey-responses/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get detailed information for a specific response.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "response_id",
+  "surveyId": "survey_id",
+  "surveyTitle": "Customer Satisfaction Survey",
+  "respondent": "Anonymous",
+  "submittedAt": "2025-08-23T12:30:00Z",
+  "responses": [
+    {
+      "questionId": "question_id_1",
+      "questionText": "How satisfied are you with our service?",
+      "type": "rating",
+      "answer": 4
+    },
+    {
+      "questionId": "question_id_2",
+      "questionText": "What improvements would you suggest?",
+      "type": "text",
+      "answer": "Service is good but could be faster."
+    }
+  ]
+}</pre>
+    </details>
+  </div>
+
+  <h2 id="analysis">Data Analysis API</h2>
+  <p>API endpoints for analyzing survey data and creating visualizations.</p>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/data-analysis/csv-uploads</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Upload a CSV file for analysis.</div>
+    <details>
+      <summary>Request</summary>
+      <p>Content-Type: multipart/form-data</p>
+      <pre>file: [CSV file]</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "csv_upload_id",
+  "fileName": "survey_data.csv",
+  "columns": ["Age", "Gender", "Rating", "Feedback"],
+  "uploadedAt": "2025-08-23T17:00:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/data-analysis/plot-data</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Generate plot data from a CSV file.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "plot_type": "bar",
+  "x_axis": "Gender",
+  "y_axes": ["Rating"],
+  "csv_upload_id": "csv_upload_id"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "data": [
+    {
+      "type": "bar",
+      "name": "Rating",
+      "x": ["Male", "Female", "Other"],
+      "y": [4.2, 4.5, 4.0]
+    }
+  ],
+  "layout": {
+    "title": "Average Rating by Gender",
+    "xaxis": {
+      "title": "Gender"
+    },
+    "yaxis": {
+      "title": "Rating"
+    }
+  }
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/data-analysis/groupby</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Group data by specified columns.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "columns": ["Gender", "Age"],
+  "csv_upload_id": "csv_upload_id"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "Gender": [
+    { "Gender": "Male", "count": 45 },
+    { "Gender": "Female", "count": 52 },
+    { "Gender": "Other", "count": 3 }
+  ],
+  "Age": [
+    { "Age": "18-24", "count": 15 },
+    { "Age": "25-34", "count": 28 },
+    { "Age": "35-44", "count": 30 },
+    { "Age": "45-54", "count": 18 },
+    { "Age": "55+", "count": 9 }
+  ]
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/data-analysis/analyses</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Save an analysis with plots.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "title": "Customer Satisfaction Analysis",
+  "author_name": "John Doe",
+  "description": "Analysis of customer satisfaction survey results",
+  "plots": [
+    {
+      "title": "Rating Distribution",
+      "description": "Distribution of satisfaction ratings",
+      "type": "bar",
+      "configuration": {
+        "xAxis": "Rating",
+        "yAxes": ["Count"]
+      },
+      "data": {
+        "data": [...],
+        "layout": {...}
+      }
+    }
+  ]
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "analysis_id",
+  "title": "Customer Satisfaction Analysis",
+  "authorName": "John Doe",
+  "description": "Analysis of customer satisfaction survey results",
+  "plots": [...],
+  "createdAt": "2025-08-23T17:30:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/data-analysis/analyses</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get all analyses created by the authenticated user.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>[
+  {
+    "id": "analysis_id_1",
+    "title": "Customer Satisfaction Analysis",
+    "authorName": "John Doe",
+    "description": "Analysis of customer satisfaction survey results",
+    "createdAt": "2025-08-20T14:30:00Z"
+  },
+  {
+    "id": "analysis_id_2",
+    "title": "Employee Feedback Analysis",
+    "authorName": "John Doe",
+    "description": "Analysis of employee feedback",
+    "createdAt": "2025-08-22T09:15:00Z"
+  }
+]</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/data-analysis/analyses/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Get detailed information for a specific analysis.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "analysis_id",
+  "title": "Customer Satisfaction Analysis",
+  "authorName": "John Doe",
+  "description": "Analysis of customer satisfaction survey results",
+  "plots": [
+    {
+      "title": "Rating Distribution",
+      "description": "Distribution of satisfaction ratings",
+      "type": "bar",
+      "configuration": {...},
+      "data": {...}
+    }
+  ],
+  "createdAt": "2025-08-20T14:30:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="url">/api/data-analysis/analyses/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Update an existing analysis.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "title": "Updated Analysis Title",
+  "author_name": "John Doe",
+  "description": "Updated analysis description",
+  "plots": [...]
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "id": "analysis_id",
+  "title": "Updated Analysis Title",
+  "authorName": "John Doe",
+  "description": "Updated analysis description",
+  "plots": [...],
+  "updatedAt": "2025-08-23T18:00:00Z"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method delete">DELETE</span>
+    <span class="url">/api/data-analysis/analyses/:id</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Delete an analysis.</div>
+    <details>
+      <summary>Response</summary>
+      <pre>{
+  "message": "Analysis deleted successfully"
+}</pre>
+    </details>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/data-analysis/publish-analysis</span>
+    <span class="auth">Requires Authentication</span>
+    <div class="description">Generate a PDF report of an analysis.</div>
+    <details>
+      <summary>Request Body</summary>
+      <pre>{
+  "analysis_id": "analysis_id"
+}</pre>
+    </details>
+    <details>
+      <summary>Response</summary>
+      <p>A PDF file containing the analysis report.</p>
+    </details>
+  </div>
+
+  <h2>API Compatibility Routes</h2>
+  <p>Routes added for compatibility with frontend applications.</p>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/api/api/surveys/:creatorId/:surveyId/</span>
+    <div class="description">Alternative route for accessing public surveys (maps to /api/surveys/:creatorId/:surveyId/public).</div>
+  </div>
+
+  <footer style="margin-top: 50px; text-align: center; color: #888; border-top: 1px solid #ddd; padding-top: 20px;">
+    <p>Jigyasa Online Survey Management System - API Documentation</p>
+    <p>Last updated: August 23, 2025</p>
+  </footer>
+</body>
+</html>
