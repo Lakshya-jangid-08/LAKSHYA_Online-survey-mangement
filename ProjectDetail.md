@@ -1,12 +1,12 @@
-# Jigyasa Online Survey Management System Documentation
+# Lakshya Online Survey Management System Documentation
 
 ## Project Structure Overview
 
 The backend is built with Django and Django REST Framework, organized into multiple apps:
 
-- **jigyasa**: Core application handling user authentication, surveys, and responses
+- **Lakshya**: Core application handling user authentication, surveys, and responses
 - **survey_analyzer**: Application for data analysis, CSV uploads, and visualization
-- **jigyasa_backend**: Main project settings and URL configuration
+- **Lakshya_backend**: Main project settings and URL configuration
 
 The frontend is built with React, Vite, and Tailwind CSS.
 
@@ -29,12 +29,12 @@ const headers = {
 
 ## Routes & Endpoints
 
-### Main URL Configuration (`jigyasa_backend/urls.py`)
+### Main URL Configuration (`Lakshya_backend/urls.py`)
 
 | Endpoint | Description |
 |----------|-------------|
 | `/admin/` | Django admin interface |
-| `/api/` | All survey and user-related APIs (includes jigyasa.urls) |
+| `/api/` | All survey and user-related APIs (includes Lakshya.urls) |
 | `/survey-analyzer/` | All data analysis APIs (includes survey_analyzer.urls) |
 
 ### Authentication & User Management (`/api/auth/`)
@@ -85,7 +85,7 @@ const headers = {
 
 ## Models & Schemas
 
-### Core User & Auth Models (`jigyasa/models.py`)
+### Core User & Auth Models (`Lakshya/models.py`)
 
 #### User Model
 ```python
@@ -113,7 +113,7 @@ class UserProfile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 ```
 
-### Survey Models (`jigyasa/models.py`)
+### Survey Models (`Lakshya/models.py`)
 
 #### Survey Model
 ```python
@@ -857,4 +857,4 @@ The project includes Vercel configuration (`vercel.json`) for deployment.
 
 ---
 
-This documentation provides a comprehensive overview of the backend architecture, endpoints, models, and functionality of the Jigyasa Online Survey Management system. It's designed to be a reference for development and migration to new backend systems.
+This documentation provides a comprehensive overview of the backend architecture, endpoints, models, and functionality of the Lakshya Online Survey Management system. It's designed to be a reference for development and migration to new backend systems.

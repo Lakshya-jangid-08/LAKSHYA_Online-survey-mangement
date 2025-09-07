@@ -1,6 +1,6 @@
-# Jigyasa Deployment Guide
+# Lakshya Deployment Guide
 
-This guide explains how to properly deploy the Jigyasa Survey System, focusing on setting up environment variables and configuration.
+This guide explains how to properly deploy the Lakshya Survey System, focusing on setting up environment variables and configuration.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ VITE_REFRESH_TOKEN_NAME="refresh_token"
 VITE_ENABLE_ANALYTICS="false"
 
 # App Configuration
-VITE_APP_NAME="Jigyasa Survey System"
+VITE_APP_NAME="Lakshya Survey System"
 ```
 
 For production, update:

@@ -46,11 +46,11 @@ The project consists of two main parts:
    CORS_ORIGIN="*"
 
    # Database Configuration
-   MONGODB_URI=mongodb://localhost:27017/jigyasa
+   MONGODB_URI=mongodb://localhost:27017/Lakshya
    MONGODB_DEBUG=false
 
    # Authentication
-   JWT_SECRET=jigyasa_secret_key_change_in_production
+   JWT_SECRET=Lakshya_secret_key_change_in_production
    JWT_EXPIRES_IN=1d
    JWT_REFRESH_EXPIRES_IN=7d
 
@@ -99,7 +99,7 @@ The project consists of two main parts:
    VITE_ENABLE_ANALYTICS="false"
 
    # App Configuration
-   VITE_APP_NAME="Jigyasa Survey System"
+   VITE_APP_NAME="Lakshya Survey System"
    ```
 4. Start the development server:
    ```
@@ -128,7 +128,7 @@ VITE_REFRESH_TOKEN_NAME="refresh_token"
 VITE_ENABLE_ANALYTICS="true"
 
 # App Configuration
-VITE_APP_NAME="Jigyasa Survey System"
+VITE_APP_NAME="Lakshya Survey System"
 ```
 
 #### Server-side Production Environment

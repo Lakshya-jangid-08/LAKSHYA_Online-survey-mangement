@@ -16,7 +16,7 @@ const config = {
   
   // Database settings
   db: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/jigyasa',
+    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/Lakshya',
     debug: process.env.MONGODB_DEBUG === 'true',
   },
   

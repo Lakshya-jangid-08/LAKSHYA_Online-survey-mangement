@@ -1,45 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jigyasa API</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    h1 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    code {
-      background-color: #f4f4f4;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Jigyasa Online Survey Management System API</h1>
-  <p>Welcome to the Jigyasa API. This server provides endpoints for the Jigyasa Online Survey Management System.</p>
-  
-  <h2>Available Endpoints:</h2>
-  <ul>
-    <li><code>/api/auth</code> - Authentication routes</li>
-    <li><code>/api/organizations</code> - Organization management</li>
-    <li><code>/api/surveys</code> - Survey management</li>
-    <li><code>/api/survey-responses</code> - Survey responses</li>
-    <li><code>/api/data-analysis</code> - Data analysis and visualizations</li>
-  </ul>
-  
-  <p><a href="/api-documentation.html" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin-top: 10px;">View Complete API Documentation</a></p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAKSHYA Backend</title>
+    <style>
+      body {
+        font-family: 'Inter', Arial, sans-serif;
+        background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .logo {
+        margin-top: 40px;
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      }
+      h1 {
+        color: #1e293b;
+        font-size: 2.2rem;
+        margin-top: 24px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      p {
+        color: #334155;
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+        text-align: center;
+        max-width: 600px;
+      }
+      .endpoints {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        padding: 24px;
+        margin-bottom: 24px;
+        width: 100%;
+        max-width: 500px;
+      }
+      .endpoints h2 {
+        color: #2563eb;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      code {
+        background-color: #e0e7ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+      .apidoc-btn {
+        display: inline-block;
+        background-color: #2563eb;
+        color: white;
+        padding: 10px 18px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        margin-top: 10px;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        transition: background 0.2s;
+      }
+      .apidoc-btn:hover {
+        background-color: #1e40af;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/logo.png" alt="LAKSHYA Backend Logo" class="logo" />
+    <h1>LAKSHYA Online Survey Management Backend</h1>
+    <p>Welcome to the LAKSHYA Backend API. This server provides endpoints for the LAKSHYA Online Survey Management System.</p>
+    <div class="endpoints">
+      <h2>Available Endpoints:</h2>
+      <ul>
+        <li><code>/api/auth</code> - Authentication routes</li>
+        <li><code>/api/organizations</code> - Organization management</li>
+        <li><code>/api/surveys</code> - Survey management</li>
+        <li><code>/api/survey-responses</code> - Survey responses</li>
+        <li><code>/api/data-analysis</code> - Data analysis and visualizations</li>
+      </ul>
+    </div>
+    <a href="/api-documentation.html" class="apidoc-btn">View Complete API Documentation</a>
+  </body>
 </html>

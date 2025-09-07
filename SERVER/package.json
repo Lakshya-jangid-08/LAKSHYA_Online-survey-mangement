@@ -1,7 +1,7 @@
 {
-  "name": "jigyasa-server",
+  "name": "Lakshya-server",
   "version": "1.0.0",
-  "description": "Backend for Jigyasa Online Survey Management System",
+  "description": "Backend for Lakshya Online Survey Management System",
   "main": "Server.js",
   "scripts": {
     "start": "node Server.js",

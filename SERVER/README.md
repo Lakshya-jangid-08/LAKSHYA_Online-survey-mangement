@@ -1,6 +1,6 @@
-# Jigyasa Online Survey Management System
+# Lakshya Online Survey Management System
 
-This is the backend server for the Jigyasa Online Survey Management System. It provides a robust API for managing surveys, collecting responses, and analyzing data.
+This is the backend server for the Lakshya Online Survey Management System. It provides a robust API for managing surveys, collecting responses, and analyzing data.
 
 ## Features
 
@@ -21,7 +21,7 @@ This is the backend server for the Jigyasa Online Survey Management System. It p
 3. Create a `.env` file with the following variables:
    ```
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/jigyasa
+   MONGODB_URI=mongodb://localhost:27017/Lakshya
    JWT_SECRET=your_jwt_secret_key
    JWT_EXPIRES_IN=1d
    JWT_REFRESH_EXPIRES_IN=7d
